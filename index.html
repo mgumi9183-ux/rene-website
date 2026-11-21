@@ -3,62 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rene | Official Website</title>
+  <title>SpotiBai — Web Player: Music for everyone</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <a href="#" class="logo">Rene</a>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">🌙 Dark Mode</button>
-    </nav>
-  </header>
+  <div class="app-container">
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">🎧</span>
+        <h1>SpotiBai</h1>
+      </div>
 
-  <section class="hero" id="home">
-    <h1>Welcome to Rene's Website</h1>
-    <p>A clean, responsive, and interactive website built with HTML, CSS, and JavaScript.</p>
-    <div class="hero-buttons">
-      <a href="#about" class="btn">Explore</a>
-      <button id="greet-btn" class="btn btn-outline">Say Hello 👋</button>
+      <nav class="main-nav">
+        <ul>
+          <li class="nav-item active" data-filter="all">
+            <span>🏠</span> Home
+          </li>
+          <li class="nav-item" id="focus-search">
+            <span>🔍</span> Search
+          </li>
+          <li class="nav-item" data-filter="liked">
+            <span>💜</span> Liked Songs
+          </li>
+        </ul>
+      </nav>
+
+      <div class="library-section">
+        <div class="library-header">
+          <span>📚 Your Library</span>
+          <button id="add-playlist-btn" title="Create Playlist">+</button>
+        </div>
+        <ul class="playlist-list" id="playlist-list">
+          <li class="playlist-item active" data-playlist="all">All Tracks</li>
+          <li class="playlist-item" data-playlist="OPM Hits">OPM Chill & Hits</li>
+          <li class="playlist-item" data-playlist="Coding Focus">Lo-Fi Coding Focus</li>
+          <li class="playlist-item" data-playlist="Late Night">Late Night Vibes</li>
+          <li class="playlist-item" data-playlist="Workout">Beast Mode Workout</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard View -->
+    <main class="main-view">
+      <!-- Top Header / Search Bar -->
+      <header class="topbar">
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="text" id="search-input" placeholder="What do you want to play, Bai?">
+        </div>
+        <div class="user-profile">
+          <span class="badge">Premium Bai</span>
+          <div class="avatar">R</div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="content-padding">
+        <h2 class="greeting" id="greeting-text">Good afternoon, Bai</h2>
+
+        <!-- Quick Picks Grid -->
+        <section class="quick-picks" id="quick-picks">
+          <!-- Populated by JS -->
+        </section>
+
+        <!-- Made For You Section -->
+        <section class="section">
+          <div class="section-header">
+            <h3 id="section-title">Made For Rene</h3>
+            <span class="subtitle" id="track-count">8 tracks</span>
+          </div>
+          <div class="cards-grid" id="cards-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Tracklist Table -->
+        <section class="section">
+          <div class="section-header">
+            <h3>Popular Tracks</h3>
+          </div>
+          <div class="track-table">
+            <div class="track-header">
+              <span>#</span>
+              <span>Title</span>
+              <span>Playlist</span>
+              <span>❤️</span>
+              <span>⏱️</span>
+            </div>
+            <div id="track-list-body">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bottom Music Player Bar -->
+  <footer class="player-bar">
+    <!-- Currently Playing Info -->
+    <div class="now-playing">
+      <div class="cover-art" id="player-cover" style="background: linear-gradient(135deg, #1db954, #191414);">🎵</div>
+      <div class="track-meta">
+        <div class="track-title" id="player-title">Select a song</div>
+        <div class="track-artist" id="player-artist">SpotiBai</div>
+      </div>
+      <button class="like-btn" id="player-like-btn" title="Save to Liked Songs">🤍</button>
     </div>
-  </section>
 
-  <main id="about">
-    <div class="grid">
-      <div class="card">
-        <h2>About Rene</h2>
-        <p>Use this section to share your story, skills, or what makes your brand unique.</p>
+    <!-- Playback Controls -->
+    <div class="player-controls">
+      <div class="control-buttons">
+        <button id="shuffle-btn" title="Shuffle">🔀</button>
+        <button id="prev-btn" title="Previous">⏮️</button>
+        <button id="play-pause-btn" class="play-circle" title="Play">▶</button>
+        <button id="next-btn" title="Next">⏭️</button>
+        <button id="repeat-btn" title="Repeat">🔁</button>
       </div>
-      <div class="card">
-        <h2>Projects & Work</h2>
-        <p>Showcase your recent achievements, services, or featured highlights here.</p>
-      </div>
-      <div class="card">
-        <h2>Interactive Features</h2>
-        <p>Try toggling dark mode in the header, clicking the greeting button, or sending a message below.</p>
+      <div class="progress-container">
+        <span id="current-time">0:00</span>
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span id="total-duration">3:15</span>
       </div>
     </div>
 
-    <section class="contact-section" id="contact">
-      <h2>Get in Touch with Rene</h2>
-      <form id="contact-form">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
-        <button type="submit" class="btn submit-btn">Send Message</button>
-      </form>
-      <p id="form-feedback" class="feedback-msg"></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Rene. All rights reserved.</p>
+    <!-- Volume Control -->
+    <div class="volume-controls">
+      <span id="volume-icon">🔊</span>
+      <input type="range" id="volume-slider" min="0" max="100" value="80">
+    </div>
   </footer>
 
   <script src="script.js"></script>
